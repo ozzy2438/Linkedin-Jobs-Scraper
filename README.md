@@ -1,64 +1,64 @@
 # LinkedIn Jobs Scraper
 
-LinkedIn iş ilanlarını otomatik olarak çeken bir Python scripti. Belirtilen arama kriterlerine (iş unvanı, konum) göre iş ilanlarını toplar ve JSON veya CSV formatında kaydeder.
+A Python script for automatically scraping job listings from LinkedIn. Collects job listings based on specified search criteria (job title, location) and saves them in JSON or CSV format.
 
-## Özellikler
+## Features
 
-- Belirtilen arama kriterlerine göre LinkedIn iş ilanlarını otomatik olarak çeker
-- Detay panelini atlamak veya kullanmak için iki farklı çalışma modu
-- JSON ve CSV formatlarında çıktı alma
-- Özelleştirilebilir sayıda iş ilanı toplama (varsayılan: 50)
-- Headless (arka planda) veya normal tarayıcı modu seçeneği
+- Automatically scrapes LinkedIn job listings based on specified search criteria
+- Two different operation modes: with or without accessing the detail panel
+- Output in JSON and CSV formats
+- Customizable number of job listings to collect (default: 50)
+- Option for headless (background) or normal browser operation
 
-## Gereksinimler
+## Requirements
 
 - Python 3.6+
-- Chrome tarayıcısı
+- Chrome browser
 - ChromeDriver
-- Selenium ve diğer gerekli paketler
+- Selenium and other required packages
 
 ```bash
 pip install selenium webdriver-manager
 ```
 
-## Kurulum
+## Installation
 
-1. Repo'yu klonlayın:
+1. Clone the repository:
 ```bash
 git clone https://github.com/yourusername/Linkedin-Jobs-Scraper.git
 cd Linkedin-Jobs-Scraper
 ```
 
-2. Gerekli Python paketlerini yükleyin:
+2. Install the required Python packages:
 ```bash
 pip install -r requirements.txt
 ```
 
-3. ChromeDriver'ı kurun (macOS için):
+3. Install ChromeDriver (for macOS):
 ```bash
 brew install --cask chromedriver
 xattr -d com.apple.quarantine $(which chromedriver)
 ```
 
-## Kullanım
+## Usage
 
-### Temel Kullanım
-
-```bash
-python Linkedin_jobs_scraper.py --job-title "data scientist" --location "Istanbul"
-```
-
-### Hızlı Mod (Detay Panelini Atla)
+### Basic Usage
 
 ```bash
-python Linkedin_jobs_scraper.py --job-title "data scientist" --location "Istanbul" --skip-details
+python Linkedin_jobs_scraper.py --job-title "data scientist" --location "London"
 ```
 
-### Tüm Parametreler
+### Fast Mode (Skip Detail Panel)
+
+```bash
+python Linkedin_jobs_scraper.py --job-title "data scientist" --location "London" --skip-details
+```
+
+### All Parameters
 
 ```bash
 python Linkedin_jobs_scraper.py --job-title "data scientist" \
-                           --location "Istanbul" \
+                           --location "London" \
                            --max-jobs 100 \
                            --max-scrolls 20 \
                            --output-format json \
@@ -68,19 +68,19 @@ python Linkedin_jobs_scraper.py --job-title "data scientist" \
                            --skip-details
 ```
 
-| Parametre | Açıklama | Varsayılan Değer |
-|-----------|----------|-----------------|
-| `--job-title` | Aranacak iş unvanı | (Zorunlu) |
-| `--location` | Aranacak konum | (Zorunlu) |
-| `--max-jobs` | Toplanacak maksimum iş ilanı sayısı | 50 |
-| `--max-scrolls` | Yapılacak maksimum scroll sayısı | 20 |
-| `--output-format` | Çıktı formatı (json, csv, both) | json |
-| `--output-file` | Çıktı dosyası adı (uzantısız) | (Otomatik oluşturulur) |
-| `--headless` | Tarayıcıyı arka planda çalıştır | False |
-| `--username` | Atıf için kullanıcı adı | None |
-| `--skip-details` | Detay paneline tıklamadan temel bilgileri çek | False |
+| Parameter | Description | Default Value |
+|-----------|-------------|---------------|
+| `--job-title` | Job title to search for | (Required) |
+| `--location` | Location to search in | (Required) |
+| `--max-jobs` | Maximum number of job listings to collect | 50 |
+| `--max-scrolls` | Maximum number of scrolls to perform | 20 |
+| `--output-format` | Output format (json, csv, both) | json |
+| `--output-file` | Output file name (without extension) | (Automatically generated) |
+| `--headless` | Run browser in background | False |
+| `--username` | Username for attribution | None |
+| `--skip-details` | Collect basic information without clicking the detail panel | False |
 
-## Örnek Çıktı
+## Example Output
 
 ```json
 [
@@ -88,7 +88,7 @@ python Linkedin_jobs_scraper.py --job-title "data scientist" \
     "id": "3574136587",
     "title": "Data Scientist",
     "company": "Example Company",
-    "location": "Istanbul, Turkey",
+    "location": "London, UK",
     "job_type": "Full-time",
     "description": "We are looking for a Data Scientist to join our team...",
     "apply_link": "https://www.linkedin.com/jobs/view/3574136587",
@@ -100,12 +100,12 @@ python Linkedin_jobs_scraper.py --job-title "data scientist" \
 ]
 ```
 
-## Notlar
+## Notes
 
-- LinkedIn'in yapısı zamanla değişebilir, bu nedenle script çalışmazsa lütfen bir issue açın
-- LinkedIn, otomatik scraping'i engellemek için çeşitli önlemler alabilir. Aşırı kullanımdan kaçının
-- Bu script sadece eğitim ve kişisel amaçlar için kullanılmalıdır
+- LinkedIn's structure may change over time, so if the script doesn't work, please open an issue
+- LinkedIn may take various measures to prevent automated scraping. Avoid excessive use
+- This script should be used for educational and personal purposes only
 
-## Lisans
+## License
 
 MIT 
